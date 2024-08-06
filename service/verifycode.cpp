@@ -25,6 +25,9 @@ VerifyCode::VerifyCode(int x, int y, int w, int h)
 
 }
 
+/**
+ * @brief VerifyCode::generateRandNum 验证码生成
+ */
 void VerifyCode::generateRandNum()
 {
     this->text.clear();
@@ -51,6 +54,10 @@ void VerifyCode::generateRandNum()
     }
 }
 
+/**
+ * @brief VerifyCode::paintEvent 验证码图片生成
+ * @param ev
+ */
 void VerifyCode::paintEvent(QPaintEvent *ev)
 {
     //绘图
@@ -91,6 +98,10 @@ void VerifyCode::paintEvent(QPaintEvent *ev)
     //cutcode = code;
     //QWidget::paintEvent(ev);
 }
+
+/**
+ * @brief VerifyCode::mousePressEvent 点击验证码重置
+ */
 void VerifyCode::mousePressEvent(QMouseEvent *)
 {
     //重新生成验证码
@@ -101,6 +112,9 @@ void VerifyCode::mousePressEvent(QMouseEvent *)
 
 }
 
+/**
+ * @brief VerifyCode::refresh 重置验证码
+ */
 void VerifyCode::refresh()
 {
     //重新生成验证码

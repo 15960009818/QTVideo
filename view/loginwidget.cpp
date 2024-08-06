@@ -110,49 +110,61 @@ void LoginWidget::initAllConnet()
     connect(cancelButton, SIGNAL(clicked()), this, SLOT(gotoMainWin()));
 
 }
-
-void LoginWidget::login()
-{
-    //qDebug()<<" LoginWidget::login调试";
-    //1.获取用户输入
-    QString username=usernameEdit->text();
-    QString password=passwordEdit->text();
-    //2.表单判断
-    bool found = false;
-    if(username.length()<=0||password.length()<=0)
-    {
-        QMessageBox::critical(this, "错误", "账号密码不能为空！");
-        return;
-    }
-    if(captchaEdit->text().toLower() != code->text.toLower())
-    {
-        QMessageBox::warning(this, "错误", "验证码输入错误");
-        code->refresh();
-        return;
-    }
-
-   //3.调用控制层，获取数据
-   UserController userController ;
-   int res=userController.loginService(username,password);
-   //4.处理返回结果
-   if (res == 1 )
-   {
-       qDebug()<<"登录成功！";
-       QMessageBox::information(this, "登录成功！", "登录成功！");
-       code->refresh();
-       this->gotoMainWin();
-       UserInfo userInfo(username);
-       emit loginSuccessful(userInfo);
-   }
-   else
-   {
-       QMessageBox::warning(this, "用户名或密码错误！", "用户名或密码错误！");
-       code->refresh();
-   }
-
-
-
+// 获取用户输入
+QString   LoginWidget::getUsername() const {
+    return usernameEdit->text();
 }
+
+QString LoginWidget::getPassword() const {
+    return passwordEdit->text();
+}
+
+QString LoginWidget::getCaptcha() const {
+    return captchaEdit->text();
+}
+
+//void LoginWidget::login()
+//{
+//    //qDebug()<<" LoginWidget::login调试";
+//    //1.获取用户输入
+//    QString username=usernameEdit->text();
+//    QString password=passwordEdit->text();
+//    //2.表单判断
+//    bool found = false;
+//    if(username.length()<=0||password.length()<=0)
+//    {
+//        QMessageBox::critical(this, "错误", "账号密码不能为空！");
+//        return;
+//    }
+//    if(captchaEdit->text().toLower() != code->text.toLower())
+//    {
+//        QMessageBox::warning(this, "错误", "验证码输入错误");
+//        code->refresh();
+//        return;
+//    }
+
+//   //3.调用控制层，获取数据
+//   UserController userController ;
+//   int res=userController.loginService(username,password);
+//   //4.处理返回结果
+//   if (res == 1 )
+//   {
+//       qDebug()<<"登录成功！";
+//       QMessageBox::information(this, "登录成功！", "登录成功！");
+//       code->refresh();
+//       this->gotoMainWin();
+//       UserInfo userInfo(username);
+//       emit loginSuccessful(userInfo);
+//   }
+//   else
+//   {
+//       QMessageBox::warning(this, "用户名或密码错误！", "用户名或密码错误！");
+//       code->refresh();
+//   }
+
+
+
+//}
 
 void LoginWidget::backtoLoginWin(QString username)
 {

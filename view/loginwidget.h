@@ -24,6 +24,9 @@ public:
     void initAllWidget();
     void initQss();//初始化所有样式
     void initAllConnet();
+    QString getUsername() const;
+    QString getPassword() const;
+    QString getCaptcha() const;
 signals:
     void backtoMain();
     void loginSuccessful(UserInfo);
