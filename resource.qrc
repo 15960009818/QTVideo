@@ -1,0 +1,24 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/bg.jpg</file>
+        <file>image/login.png</file>
+        <file>image/logo.png</file>
+        <file>image/player.png</file>
+        <file>image/电视剧.png</file>
+        <file>image/热点.png</file>
+        <file>image/首页.png</file>
+        <file>qss/loginwin.qss</file>
+        <file>qss/mainwidget.qss</file>
+        <file>image/bunner1.jpg</file>
+        <file>image/bunner2.jpg</file>
+        <file>image/bunner3.jpg</file>
+        <file>image/小红.png</file>
+        <file>image/小绿.png</file>
+        <file>image/愤怒的小鸟.jpg</file>
+        <file>image/钱币.png</file>
+        <file>video/video1.mp4</file>
+        <file>image/mainbg.png</file>
+        <file>image/电影.png</file>
+        <file>image/综艺.png</file>
+    </qresource>
+</RCC>

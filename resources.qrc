@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/">
+        <file>image/bg.jpg</file>
+        <file>image/player.png</file>
+        <file>qss/loginwin.qss</file>
+        <file>image/login.png</file>
+        <file>qss/mainwidget.qss</file>
+        <file>image/logo.png</file>
+        <file>image/首页.png</file>
+    </qresource>
+</RCC>

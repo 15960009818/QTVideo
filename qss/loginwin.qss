@@ -1,0 +1,66 @@
+
+
+/* 设置标签的字体和大小 */
+QLabel {
+    font-size: 16px;
+    color: black;
+}
+
+/* 设置输入框的样式 */
+QLineEdit {
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* 设置按钮的样式 */
+QPushButton {
+    font-size: 12px;  /* 调整字体大小 */
+    padding: 5px 10px;  /* 调整内边距 */
+    border: 2px solid #ADD8E6;  /* 边框样式 */
+    border-radius: 4px;  /* 圆角 */
+    background-color: #ADD8E6;  /* 背景颜色 */
+    color: black;  /* 字体颜色 */
+    min-width: 60px;  /* 最小宽度 */
+    min-height: 30px;  /* 最小高度 */
+}
+
+QPushButton:hover {
+    background-color: #45a049;
+}
+
+QPushButton:pressed {
+    background-color: #398c3e;
+}
+
+/* 设置验证码区域的样式 */
+#code {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: white;
+}
+QMessageBox
+{
+    background-color: white;
+}
+QMessageBox QLabel {
+    color: black;
+    background-color: transparent;
+    padding: 10px;
+    border: none;
+    /*border: 1px solid #5c5c5c;*/
+    border-radius: 5px;
+    font-size: 14px;
+}
+QPushButton
+{
+}
+QPushButton:hover
+{
+    background-color:white;
+}
+#log
+{
+    background-color:blue;
+}

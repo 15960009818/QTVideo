@@ -1,0 +1,30 @@
+QPushButton {
+    background-color: #f0f0f0;
+    border: 1px solid #dcdcdc;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+QWidget { font-size: 20pt; }
+QPushButton:hover
+{
+    background-color: #cceeff;
+    border: 1px solid #99ccff;
+}
+
+QListWidget
+{
+    background-color: transparent;
+    border: none;
+}
+
+QListWidget::item:hover
+{
+    background-color: #444444;
+    border: none;
+}
+QListWidget::item:selected {
+    background-color: #444444;
+    color: #ff9800; /* 设置选中项目的字体颜色 */
+    border: none;
+}
