@@ -18,6 +18,7 @@ INPUT(
 ./release\channelcontroller.o
 ./release\channelmodel.o
 ./release\userinfo.o
+./release\maincontroller.o
 ./release\moc_loginwidget.o
 ./release\moc_mainwidget.o
 ./release\moc_myview.o

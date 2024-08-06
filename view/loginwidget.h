@@ -12,7 +12,7 @@
 #include <QMessageBox>
 #include "view/regwidget.h"
 #include "service/userinfo.h"
-#include "service/verifycode.h"
+#include "util/verifycode.h"
 class LoginWidget : public QWidget
 {
     Q_OBJECT

@@ -18,6 +18,7 @@ INPUT(
 ./debug\channelcontroller.o
 ./debug\channelmodel.o
 ./debug\userinfo.o
+./debug\maincontroller.o
 ./debug\moc_loginwidget.o
 ./debug\moc_mainwidget.o
 ./debug\moc_myview.o

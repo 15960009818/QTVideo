@@ -1,4 +1,5 @@
 #include "mainwidget.h"
+#include "mainwidget.h"
 #include <QListWidgetItem>
 #include <QListWidget>
 #include <QIcon>
@@ -53,41 +54,79 @@ void MainWidget::initAllConnet()
 
 void MainWidget::initleftWin()
 {
+    // 创建左侧主部件
     leftWidget = new QWidget(this);
     leftLayout = new QVBoxLayout(leftWidget);
-    leftWidget->setStyleSheet("background-color:white");
-    QLabel *logoLab=new QLabel();
-    logoLab->setPixmap(QPixmap(":/image/logo.png").scaled(40,40));
+    leftWidget->setStyleSheet("background-color:white");  // 设置左侧部件的背景颜色为白色
+
+    // 添加 logo 标签
+    QLabel *logoLab = new QLabel();
+    logoLab->setPixmap(QPixmap(":/image/logo.png").scaled(40, 40));  // 设置 logo 图片并调整大小
+    leftLayout->addWidget(logoLab);  // 将 logo 标签添加到左侧布局
+
+    // 创建频道列表部件
     QListWidget *channels = new QListWidget();
-    QListWidgetItem *item1 = new QListWidgetItem(QIcon("://image/首页.png"),"首页");
-    QListWidgetItem *item2 = new QListWidgetItem(QIcon("://image/热点.png"),"热点");
-    QListWidgetItem *item3 = new QListWidgetItem(QIcon("://image/电视剧.png"),"电视剧");
-    channels->addItem(item1);
-    channels->addItem(item2);
-    channels->addItem(item3);
-    leftLayout->addWidget(logoLab);
-    QLabel *channelLab=new QLabel("频道");
-    QListWidgetItem *labelItem = new QListWidgetItem(channels);
-    int insertPosition = 4;
-    channels->insertItem(insertPosition, labelItem);
-    channels->setItemWidget(labelItem, channelLab);
 
+    // 添加固定的频道列表项
+    QListWidgetItem *item1 = new QListWidgetItem(QIcon(":/image/首页.png"), "首页");
+    QListWidgetItem *item2 = new QListWidgetItem(QIcon(":/image/热点.png"), "热点");
+    QListWidgetItem *item3 = new QListWidgetItem(QIcon(":/image/电视剧.png"), "电视剧");
+    channels->addItem(item1);  // 添加“首页”频道
+    channels->addItem(item2);  // 添加“热点”频道
+    channels->addItem(item3);  // 添加“电视剧”频道
 
+    // 添加“频道”标签
+    QLabel *channelLab = new QLabel("频道");
+    QListWidgetItem *labelItem = new QListWidgetItem(channels);  // 创建一个新的列表项
+    int insertPosition = 4;  // 插入位置
+    channels->insertItem(insertPosition, labelItem);  // 在指定位置插入列表项
+    channels->setItemWidget(labelItem, channelLab);  // 将列表项设置为“频道”标签
 
-    channelListWidget= new QListWidget;
+    // 创建一个新的频道列表部件
+    channelListWidget = new QListWidget;
+
+    // 获取所有频道数据
     ChannelController channelController;
-    QList<Channel> channelList=channelController.getAllChannel();
-    for(int i=0;i<channelList.size();++i)
+    QList<Channel> channelList = channelController.getAllChannel();
+
+    // 遍历频道列表，添加每个频道到列表部件中
+    for(int i = 0; i < channelList.size(); ++i)
     {
-        Channel channel =channelList.at(i);
-        QString iconPath=QString(":/image/%1.png").arg(channel.getChannelname());
-         qDebug()<<iconPath;
-        QListWidgetItem *item = new QListWidgetItem(QIcon(iconPath)
-                                                    ,channel.getChannelname());
-        channels->addItem(item);
+        Channel channel = channelList.at(i);
+        QString iconPath = QString(":/image/%1.png").arg(channel.getChannelname());  // 根据频道名称生成图标路径
+        qDebug() << iconPath;  // 输出图标路径调试信息
+        QListWidgetItem *item = new QListWidgetItem(QIcon(iconPath), channel.getChannelname());  // 创建列表项并设置图标和频道名称
+        channels->addItem(item);  // 将列表项添加到频道列表部件中
     }
-    channels->setIconSize(QSize(50,50));
+
+    // 设置频道列表项的图标大小
+    channels->setIconSize(QSize(50, 50));
+
+    // 将频道列表部件添加到左侧布局中
     leftLayout->addWidget(channels);
+
+    // 连接频道列表项点击信号到相应的槽函数
+       connect(channels, &QListWidget::itemClicked, this, &MainWidget::onChannelItemClicked);
+}
+
+void MainWidget::onChannelItemClicked(QListWidgetItem *item)
+{
+    QString channelName = item->text();
+
+    if (channelName == "首页") {
+        IndexController indexController;
+        indexController.execute();
+    } else if (channelName == "热点") {
+        HotVideoController hotVideoController;
+        hotVideoController.execute();
+    } else if (channelName == "电视剧") {
+        VideoController videoController;
+        videoController.execute();
+    } else {
+        // 处理其他频道的点击事件
+        ChannelController channelController;
+        channelController.execute(channelName);
+    }
 }
 
 void MainWidget::initRightWin()

@@ -38,12 +38,13 @@ SOURCES += \
     service/bunner.cpp \
     service/myitem.cpp \
     service/usermodel.cpp \
-    service/verifycode.cpp \
+    util/verifycode.cpp \
     view/videoplayer.cpp \
     service/channel.cpp \
     controller/channelcontroller.cpp \
     service/channelmodel.cpp \
-    service/userinfo.cpp
+    service/userinfo.cpp \
+    controller/maincontroller.cpp
 
 HEADERS += \
     util/sqliteutil.h \
@@ -57,12 +58,13 @@ HEADERS += \
     service/video.h \
     service/bunner.h \
     service/myitem.h \
-    service/verifycode.h \
+    util/verifycode.h \
     view/videoplayer.h \
     service/channel.h \
     controller/channelcontroller.h \
     service/channelmodel.h \
-    service/userinfo.h
+    service/userinfo.h \
+    controller/maincontroller.h
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
