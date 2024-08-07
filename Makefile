@@ -240,6 +240,7 @@ Makefile: qtdemo3.pro ../../../../QT/5.9.8/5.9.8/mingw53_32/mkspecs/win32-g++/qm
 		../../../../QT/5.9.8/5.9.8/mingw53_32/lib/Qt5Widgets.prl \
 		../../../../QT/5.9.8/5.9.8/mingw53_32/lib/Qt5Gui.prl \
 		../../../../QT/5.9.8/5.9.8/mingw53_32/lib/Qt5Network.prl \
+		../../../../QT/5.9.8/5.9.8/mingw53_32/lib/Qt5Sql.prl \
 		../../../../QT/5.9.8/5.9.8/mingw53_32/lib/Qt5Core.prl
 	$(QMAKE) -o Makefile qtdemo3.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"
 ../../../../QT/5.9.8/5.9.8/mingw53_32/mkspecs/features/spec_pre.prf:
@@ -421,6 +422,7 @@ qtdemo3.pro:
 ../../../../QT/5.9.8/5.9.8/mingw53_32/lib/Qt5Widgets.prl:
 ../../../../QT/5.9.8/5.9.8/mingw53_32/lib/Qt5Gui.prl:
 ../../../../QT/5.9.8/5.9.8/mingw53_32/lib/Qt5Network.prl:
+../../../../QT/5.9.8/5.9.8/mingw53_32/lib/Qt5Sql.prl:
 ../../../../QT/5.9.8/5.9.8/mingw53_32/lib/Qt5Core.prl:
 qmake: FORCE
 	@$(QMAKE) -o Makefile qtdemo3.pro -spec win32-g++ "CONFIG+=debug" "CONFIG+=qml_debug"

@@ -1,5 +1,4 @@
 #include "mainwidget.h"
-#include "mainwidget.h"
 #include <QListWidgetItem>
 #include <QListWidget>
 #include <QIcon>
@@ -7,7 +6,8 @@
 #include <QTimer>
 #include "view/videoplayer.h"
 #include "controller/channelcontroller.h"
-#include "service/channel.h"
+#include "entity/channel.h"
+#include <controller/maincontroller.h>
 MainWidget::MainWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -31,6 +31,9 @@ void MainWidget::initAllWidget()
     mainLayout->addLayout(contentLayout);
 }
 
+/**
+ * @brief MainWidget::initQss Qss加载
+ */
 void MainWidget::initQss()
 {
     QFile file(":/qss/mainwidget.qss");
@@ -40,6 +43,9 @@ void MainWidget::initQss()
     }
 }
 
+/**
+ * @brief MainWidget::initAllConnet 初始化槽函数
+ */
 void MainWidget::initAllConnet()
 {
     connect(loginButton, &QPushButton::clicked, this, &MainWidget::gotoLogin);
@@ -52,6 +58,9 @@ void MainWidget::initAllConnet()
 
 }
 
+/**
+ * @brief MainWidget::initleftWin 左侧菜单显示
+ */
 void MainWidget::initleftWin()
 {
     // 创建左侧主部件
@@ -105,29 +114,30 @@ void MainWidget::initleftWin()
     // 将频道列表部件添加到左侧布局中
     leftLayout->addWidget(channels);
 
-    // 连接频道列表项点击信号到相应的槽函数
-       connect(channels, &QListWidget::itemClicked, this, &MainWidget::onChannelItemClicked);
+
 }
 
-void MainWidget::onChannelItemClicked(QListWidgetItem *item)
-{
-    QString channelName = item->text();
+/**
+ * @brief MainWidget::onChannelItemClicked 左侧菜单功能实现
+ * @param item
+ */
+//void MainWidget::onChannelItemClicked(QListWidgetItem *item)
+//{
+//    //点击首页
 
-    if (channelName == "首页") {
-        IndexController indexController;
-        indexController.execute();
-    } else if (channelName == "热点") {
-        HotVideoController hotVideoController;
-        hotVideoController.execute();
-    } else if (channelName == "电视剧") {
-        VideoController videoController;
-        videoController.execute();
-    } else {
-        // 处理其他频道的点击事件
-        ChannelController channelController;
-        channelController.execute(channelName);
-    }
-}
+//    //点击热点
+
+//    //点击电视剧
+
+//    //点击电影频道
+
+//    //点击电视剧频道
+
+//    //点击综艺频道
+//}
+
+
+
 
 void MainWidget::initRightWin()
 {
@@ -139,6 +149,9 @@ void MainWidget::initRightWin()
     this->initVideoListWin();
 }
 
+/**
+ * @brief MainWidget::initNavWin 上面菜单显示
+ */
 void MainWidget::initNavWin()
 {
     QWidget *navWidget= new QWidget;
@@ -161,6 +174,9 @@ void MainWidget::initNavWin()
     this->rightLayout->addWidget(navWidget,1);
 }
 
+/**
+ * @brief MainWidget::initHotVideoWin 中心大屏显示
+ */
 void MainWidget::initHotVideoWin()
 {
 
@@ -193,36 +209,26 @@ void MainWidget::initHotVideoWin()
     rightLayout->addWidget(hotVideoWin,3);
 }
 
+/**
+ * @brief MainWidget::initVideoListWin 下次视频显示
+ */
 void MainWidget::initVideoListWin()
 {
-
     QWidget *videoListWin = new QWidget(this);
     videoListWin->setStyleSheet("background-color:gray");
     QHBoxLayout *videoLayout = new QHBoxLayout;
     videoListWin->setLayout(videoLayout);
     videoListWidget = new QListWidget;
-    QListWidgetItem *item1= new QListWidgetItem(QIcon(":/image/bunner1.jpg"),"视频1");
-    item1->setData(Qt::UserRole, "video/video1.mp4"); // 存储视频路径
-    videoListWidget->addItem(item1);
-    QListWidgetItem *item2= new QListWidgetItem(QIcon(":/image/bunner2.jpg"),"视频2");
-    videoListWidget->addItem(item2);
-    QListWidgetItem *item3= new QListWidgetItem(QIcon(":/image/bunner3.jpg"),"视频3");
-    videoListWidget->addItem(item3);
-    QListWidgetItem *item4= new QListWidgetItem(QIcon(":/image/bunner1.jpg"),"视频4");
-    videoListWidget->addItem(item4);
-    QListWidgetItem *item5= new QListWidgetItem(QIcon(":/image/bunner2.jpg"),"视频5");
-    videoListWidget->addItem(item5);
-    //图标模式
     videoListWidget->setViewMode(QListView::IconMode);
     videoListWidget->setIconSize(QSize(200,200));
     videoListWidget->setResizeMode(QListView::Adjust);
     videoListWidget->setSpacing(10);
-    //固定图标位置
     videoListWidget->setMovement(QListView::Static);
     connect(videoListWidget, &QListWidget::itemClicked, this, &MainWidget::onVideoItemClicked);
     videoLayout->addWidget(videoListWidget);
     rightLayout->addWidget(videoListWin,4);
 }
+
 
 void MainWidget::initData()
 {

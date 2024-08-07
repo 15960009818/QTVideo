@@ -1,6 +1,9 @@
 #include "channelmodel.h"
 #include "util/sqliteutil.h"
-#include "channel.h"
+#include "../entity/channel.h"
+/**
+ * @brief ChannelModel::ChannelModel 节目的sql编写
+ */
 ChannelModel::ChannelModel()
 {
 

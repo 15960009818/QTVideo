@@ -1,7 +1,7 @@
 #ifndef CHANNELMODEL_H
 #define CHANNELMODEL_H
 #include <QList>
-#include "channel.h"
+#include "../entity/channel.h"
 class ChannelModel
 {
 public:

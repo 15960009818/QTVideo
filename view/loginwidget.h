@@ -11,7 +11,7 @@
 #include <QFile>
 #include <QMessageBox>
 #include "view/regwidget.h"
-#include "service/userinfo.h"
+#include "entity/userinfo.h"
 #include "util/verifycode.h"
 class LoginWidget : public QWidget
 {

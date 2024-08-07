@@ -13,10 +13,11 @@
 #include <QDesktopWidget>
 #include <QFile>
 #include <QDebug>
-#include <service/bunner.h>
+#include <entity/bunner.h>
 #include <QList>
 #include <QListWidgetItem>
 #include <QListWidget>
+#include <controller/maincontroller.h>
 class MainWidget : public QWidget
 {
     Q_OBJECT
@@ -50,6 +51,20 @@ public:
    void initVideoListWin();
    void initData();
 
+   void onChannelItemClicked(QListWidgetItem *item)
+   {
+       QString channelName = item->text();
+       MainController mainController;
+       QList<Video> videoList = mainController.getVideoByChannelController(channelName);
+       //void onChannelItemClicked(QListWidgetItem *item);
+       videoListWidget->clear();
+       for (const Video &video : videoList)
+       {
+           QListWidgetItem *videoItem = new QListWidgetItem(QIcon(video.getVideoImage()), video.getVideoName());
+           videoItem->setData(Qt::UserRole, video.getVideoPath());
+           videoListWidget->addItem(videoItem);
+       }
+   }
 signals:
 
 public slots:

@@ -1,21 +1,16 @@
 #include "maincontroller.h"
+#include "videoservice.h"
+
+#include <service/channelmodel.h>
 
 MainController::MainController()
 {
 
 }
 
-QList<Video> MainController::getAllVideController()
+QList<Video> MainController::getVideoByChannelController(const QString &channelName)
 {
-
+    VideoService videoService;
+    return videoService.getVideoMessageService(channelName);
 }
 
-QList<Channel> MainController::getAllHotChannelController()
-{
-
-}
-
-void MainController::getIndexController()
-{
-
-}

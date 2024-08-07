@@ -1,7 +1,7 @@
 #ifndef CHANNELCONTROLLER_H
 #define CHANNELCONTROLLER_H
 #include <QList>
-#include "service/channel.h"
+#include "entity/channel.h"
 /**
  * @brief The ChannelController class
  *
