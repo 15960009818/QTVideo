@@ -19,6 +19,9 @@ INPUT(
 ./release\channelmodel.o
 ./release\userinfo.o
 ./release\maincontroller.o
+./release\videoservice.o
+./release\mainscreen.o
+./release\ffmpegdecoder.o
 ./release\moc_loginwidget.o
 ./release\moc_mainwidget.o
 ./release\moc_myview.o
@@ -26,4 +29,6 @@ INPUT(
 ./release\moc_myitem.o
 ./release\moc_verifycode.o
 ./release\moc_videoplayer.o
+./release\moc_mainscreen.o
+./release\moc_ffmpegdecoder.o
 );

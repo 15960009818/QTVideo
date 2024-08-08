@@ -19,6 +19,9 @@ INPUT(
 ./debug\channelmodel.o
 ./debug\userinfo.o
 ./debug\maincontroller.o
+./debug\videoservice.o
+./debug\mainscreen.o
+./debug\ffmpegdecoder.o
 ./debug\moc_loginwidget.o
 ./debug\moc_mainwidget.o
 ./debug\moc_myview.o
@@ -26,4 +29,6 @@ INPUT(
 ./debug\moc_myitem.o
 ./debug\moc_verifycode.o
 ./debug\moc_videoplayer.o
+./debug\moc_mainscreen.o
+./debug\moc_ffmpegdecoder.o
 );

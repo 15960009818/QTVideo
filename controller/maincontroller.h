@@ -11,6 +11,7 @@ public:
      QList<Channel>getAllHotChannelController();
      void getIndexController();
      QList<Video> getVideoByChannelController(const QString &channelName);
+     void playVideoController(const Video &video);
 };
 
 #endif // MAINCONTROLLER_H

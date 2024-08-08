@@ -36,7 +36,7 @@ QList<Video> VideoService::getVideoMessageService(const QString &channelName)
             Video video;
             video.setVideoId(query.value(0).toInt());
             video.setVideoName(query.value(1).toString());
-            video.setVideoImage(query.value(2).toString());
+           // video.setVideoImage(query.value(2).toString());
             video.setVideoPath(query.value(3).toString());
             videoList.append(video);
         }

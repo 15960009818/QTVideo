@@ -49,14 +49,36 @@ void MainWidget::initQss()
 void MainWidget::initAllConnet()
 {
     connect(loginButton, &QPushButton::clicked, this, &MainWidget::gotoLogin);
-    connect(this->bunnerList,SIGNAL(itemClicked(QListWidgetItem *)),this,SLOT(changeBunner(QListWidgetItem *)));
+    connect(this->bunnerList, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(changeBunner(QListWidgetItem*)));
     QTimer *timer = new QTimer;
     timer->start(2000);
-    connect(timer,SIGNAL(timeout()),this,SLOT(updateBunner()));
-    connect(this->loginwidget,SIGNAL(backtoMain()),this,SLOT(show()));
-    connect(this->loginwidget,SIGNAL(loginSuccessful(UserInfo)),this,SLOT(login(UserInfo)));
+    connect(timer, SIGNAL(timeout()), this, SLOT(updateBunner()));
+    connect(this->loginwidget, SIGNAL(backtoMain()), this, SLOT(show()));
+    connect(this->loginwidget, SIGNAL(loginSuccessful(UserInfo)), this, SLOT(login(UserInfo)));
 
+    connect(this->channels, SIGNAL(itemClicked(QListWidgetItem*)), this, SLOT(onChannelItemClicked(QListWidgetItem*)));
 }
+
+/**
+ * @brief MainWidget::onChannelItemClicked 视频播放
+ * @param item
+ */
+void MainWidget::onChannelItemClicked(QListWidgetItem *item){
+    //视频路径定义
+    QString videoPath = QString("video/%1").arg(item->data(Qt::UserRole).toString());
+    qDebug()<<"路径获取成功，视频路径为："<<videoPath;
+
+    //视频路径获取
+    if (!videoPath.isEmpty()) {
+        VideoPlayer *player = new VideoPlayer(this->VideoList.at(item->listWidget()->row(item)));
+        player->setAttribute(Qt::WA_DeleteOnClose);
+        player->resize(800, 600);
+        player->show();
+        player->playVideo(videoPath);
+    }
+}
+
+
 
 /**
  * @brief MainWidget::initleftWin 左侧菜单显示
@@ -84,34 +106,12 @@ void MainWidget::initleftWin()
     channels->addItem(item2);  // 添加“热点”频道
     channels->addItem(item3);  // 添加“电视剧”频道
 
-    // 添加“频道”标签
-    QLabel *channelLab = new QLabel("频道");
-    QListWidgetItem *labelItem = new QListWidgetItem(channels);  // 创建一个新的列表项
-    int insertPosition = 4;  // 插入位置
-    channels->insertItem(insertPosition, labelItem);  // 在指定位置插入列表项
-    channels->setItemWidget(labelItem, channelLab);  // 将列表项设置为“频道”标签
+    QLabel *channelLab=new QLabel("频道");
+    QListWidgetItem *labelItem = new QListWidgetItem(channels);
+    int insertPosition = 4;
+    channels->insertItem(insertPosition, labelItem);
+    channels->setItemWidget(labelItem, channelLab);
 
-    // 创建一个新的频道列表部件
-    channelListWidget = new QListWidget;
-
-    // 获取所有频道数据
-    ChannelController channelController;
-    QList<Channel> channelList = channelController.getAllChannel();
-
-    // 遍历频道列表，添加每个频道到列表部件中
-    for(int i = 0; i < channelList.size(); ++i)
-    {
-        Channel channel = channelList.at(i);
-        QString iconPath = QString(":/image/%1.png").arg(channel.getChannelname());  // 根据频道名称生成图标路径
-        qDebug() << iconPath;  // 输出图标路径调试信息
-        QListWidgetItem *item = new QListWidgetItem(QIcon(iconPath), channel.getChannelname());  // 创建列表项并设置图标和频道名称
-        channels->addItem(item);  // 将列表项添加到频道列表部件中
-    }
-
-    // 设置频道列表项的图标大小
-    channels->setIconSize(QSize(50, 50));
-
-    // 将频道列表部件添加到左侧布局中
     leftLayout->addWidget(channels);
 
 
@@ -275,15 +275,15 @@ void MainWidget::gotoLogin()
     loginwidget->show();
 }
 void MainWidget::onVideoItemClicked(QListWidgetItem *item) {
-    QString videoPath = item->data(Qt::UserRole).toString();
-    qDebug()<<videoPath;
-    if (!videoPath.isEmpty()) {
-        VideoPlayer *player = new VideoPlayer;
-        player->setAttribute(Qt::WA_DeleteOnClose);
-        player->resize(800, 600);
-        player->show();
-        player->playVideo(videoPath);
-    }
+//    QString videoPath = item->data(Qt::UserRole).toString();
+//    qDebug()<<videoPath;
+//    if (!videoPath.isEmpty()) {
+//        VideoPlayer *player = new VideoPlayer;
+//        player->setAttribute(Qt::WA_DeleteOnClose);
+//        player->resize(800, 600);
+//        player->show();
+//        player->playVideo(videoPath);
+//    }
 }
 
 void MainWidget::login(UserInfo userInfo)
